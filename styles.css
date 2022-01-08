@@ -1,0 +1,74 @@
+:root {
+    --header-bg: rgb(6, 70, 53);
+    --light-bg: rgb(81, 146, 89);
+    --light-green:  rgb(161, 209, 166);
+    --colourful-color: rgb(240, 187, 98);
+    --lightest-bg: rgb(244, 238, 169);
+    --red: rgb(219, 10, 10);
+}
+
+body{
+    background-color: var(--header-bg);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: .1rem;
+}
+
+#imgDuerkos {
+    width: 2rem;
+    height: 2rem;
+    align-items: center;
+    border: 4px;
+    border-style: solid;
+    border-radius: 50%;
+}
+
+.header, .footer {
+    display: flex;
+    justify-content:center;
+    gap : 5vw;
+    flex-flow: row nowrap;
+    height: 5rem;
+    align-items: center;
+    background-color: var(--header-bg);
+    padding: 0.2rem;
+}
+
+.header img{
+    max-height: 2rem;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.header a{
+    text-decoration: none;
+    color: white;
+    font-size:larger;
+}
+.backgroundDiv{
+    background-color: var(--light-bg);
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.panelDiv{
+    display:flex;
+    background-color: var(--lightest-bg);
+    width: 85vh;
+    height: 85vh;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column nowrap;
+    gap: 5vh;
+}
+
+.displayDiv{
+    color:green;
+    background-color: black;
+    font-size: x-large;
+    font-weight: bold;
+}
