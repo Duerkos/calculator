@@ -67,8 +67,51 @@ body{
 }
 
 .displayDiv{
-    color:green;
-    background-color: black;
-    font-size: x-large;
+    color:black;
+    background-color: white;
+    font-size: xx-large;
     font-weight: bold;
+    width: 64vh;
+    border-radius: 2px;
+    border-style: solid;
+    border-color: var(--header-bg);
+    display:flex;
+    align-items:center;
+    justify-content: end;
+}
+
+.buttonsContainer{
+    display:flex;
+    flex-flow: row nowrap;
+
+}
+
+.digits{
+    width: 40vh;
+    height: 40vh;
+    gap: 1vh;
+    display:flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+button{
+    width: 12vh;
+    height: 8vh;
+    font-size:xx-large;
+    font-weight: bold;
+}
+
+.buttonDigit{
+}
+
+.operations{
+    width: 26vh;
+    height: 40vh;
+    gap: 1vh;
+    display:flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
 }
