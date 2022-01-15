@@ -106,6 +106,10 @@ button{
 .buttonDigit{
 }
 
+#equal{
+    width: 25vh;
+}
+
 .operations{
     width: 26vh;
     height: 40vh;
