@@ -2,6 +2,9 @@ const display = document.querySelector(".displayDiv");
 const buttonDigits = document.querySelectorAll(".buttonDigit");
 const buttonOperations = document.querySelectorAll(".buttonOps");
 const buttonEqual = document.querySelector("#equal");
+const buttonBackspace = document.querySelector("#backspace");
+const buttonClear = document.querySelector("#clear");
+const buttonSign = document.querySelector("#sign");
 
 let input = "0";
 let previousInput = "0";
@@ -28,13 +31,20 @@ function operate(operator,a,b){
 
 function addDigits(digit){
     if (readyNewInput) {
-        input = digit;
-        readyNewInput = false;
-    } else input += digit;
+        if (input != "-") {
+            input = digit;
+            readyNewInput = false;
+        } else {
+            input += digit;
+            readyNewInput = false;
+        }
+
+    }else if(!(input.includes(".") && digit == ".")) input += digit;
     updateDisplay(input);
 }
 
 function updateDisplay(number){
+    if (number.length == 0) number = "0";
     display.textContent = number;
 }
 
@@ -70,4 +80,30 @@ buttonEqual.addEventListener("click", () =>{
         updateDisplay(input);
         readyNewInput = true;
     }
+});
+
+buttonBackspace.addEventListener("click", () =>{
+  if(!readyNewInput){
+      input = input.slice(0,length-1);
+      updateDisplay(input);
+  }
+});
+
+
+buttonClear.addEventListener("click", () =>{
+  input = "0";
+  previousInput = "0";
+  operator= "";
+  readyNewInput = true;
+  updateDisplay(input);
+});
+
+buttonSign.addEventListener("click", () =>{
+    if (readyNewInput) {
+        if (input == "-") input = 0;
+        else input = "-";
+    }
+    else if(input.charAt(0) == "-")input = input.slice(1);
+    else input = "-" + input;
+    updateDisplay(input);
 });
