@@ -9,6 +9,8 @@
 
 body{
     background-color: var(--header-bg);
+    margin: 0px;
+    font-family: monospace, 'Courier New', Courier;
 }
 
 .logo {
@@ -58,8 +60,8 @@ body{
 .panelDiv{
     display:flex;
     background-color: var(--lightest-bg);
-    width: 85vh;
-    height: 85vh;
+    width: 85vw;
+    height: 85vw;
     align-items: center;
     justify-content: center;
     flex-flow: column nowrap;
@@ -69,9 +71,9 @@ body{
 .displayDiv{
     color:black;
     background-color: white;
-    font-size: xx-large;
+    font-size: 8vw;
     font-weight: bold;
-    width: 64vh;
+    width: 80vw;
     border-radius: 2px;
     border-style: solid;
     border-color: var(--header-bg);
@@ -87,8 +89,6 @@ body{
 }
 
 .digits{
-    width: 40vh;
-    height: 40vh;
     gap: 1vh;
     display:flex;
     flex-flow: row wrap;
@@ -97,25 +97,50 @@ body{
 }
 
 button{
-    width: 12vh;
-    height: 8vh;
-    font-size:xx-large;
+    width: 15vw;
+    height: 10vw;
+    font-size: 8vw;
     font-weight: bold;
-}
-
-.buttonDigit{
+    margin: 0px;
+    padding: 0px;
+    text-align: center;
 }
 
 #equal{
-    width: 25vh;
+    width: 32vw;
 }
 
 .operations{
-    width: 26vh;
-    height: 40vh;
     gap: 1vh;
     display:flex;
     flex-flow: row wrap;
     align-items: center;
     justify-content: center;
 }
+
+#clear, #backspace{
+    font-size: 6vw;
+}
+
+@media only screen and (orientation: landscape) {
+    .panelDiv {
+        width: 85vh;
+        height: 85vh;
+    }
+    .displayDiv{
+        width: 64vh;
+        font-size: 6vh;
+    }
+    #equal{
+        width: 29vh;
+    }
+    #clear, #backspace{
+        font-size: 6vh;
+    }
+    button{
+        width: 14vh;
+        height: 10vh;
+        font-size: 8vh;
+    }
+  }
+

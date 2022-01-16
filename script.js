@@ -44,8 +44,12 @@ function addDigits(digit){
 }
 
 function updateDisplay(number){
-    if (number.length == 0) number = "0";
-    display.textContent = number;
+    let nDisplay = String(number);
+    if (nDisplay.length == 0) nDisplay = "0";
+    else if (nDisplay.length > 16) nDisplay = Number(nDisplay).toPrecision(11);
+    display.textContent = nDisplay;
+    console.log(number);
+    console.log(nDisplay);
 }
 
 buttonDigits.forEach((buttonDigit) => {
