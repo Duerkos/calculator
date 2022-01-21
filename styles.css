@@ -66,6 +66,8 @@ body{
     justify-content: center;
     flex-flow: column nowrap;
     gap: 5vh;
+    border-radius: 30px;
+    border-style:double;
 }
 
 .displayDiv{
@@ -74,7 +76,7 @@ body{
     font-size: 8vw;
     font-weight: bold;
     width: 80vw;
-    border-radius: 2px;
+    border-radius: 10px;
     border-style: solid;
     border-color: var(--header-bg);
     display:flex;
@@ -104,9 +106,19 @@ button{
     margin: 0px;
     padding: 0px;
     text-align: center;
+    border-radius: 10px;
+    border-style: solid;
+    box-shadow: 0 5px #666;
 }
 
-#equal{
+button:active, button.active {
+    background-color: white;
+    box-shadow: 0 3px #666;
+    transform: translateY(2px);
+    transition-duration: .1s;
+  }
+
+#Enter{
     width: 32vw;
 }
 
@@ -118,7 +130,7 @@ button{
     justify-content: center;
 }
 
-#clear, #backspace{
+#Delete, #Backspace{
     font-size: 6vw;
 }
 
@@ -131,10 +143,10 @@ button{
         width: 64vh;
         font-size: 6vh;
     }
-    #equal{
+    #Enter{
         width: 29vh;
     }
-    #clear, #backspace{
+    #Delete, #Backspace{
         font-size: 6vh;
     }
     button{

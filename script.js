@@ -1,10 +1,12 @@
 const display = document.querySelector(".displayDiv");
+const body = document.querySelector("body");
 const buttonDigits = document.querySelectorAll(".buttonDigit");
 const buttonOperations = document.querySelectorAll(".buttonOps");
-const buttonEqual = document.querySelector("#equal");
-const buttonBackspace = document.querySelector("#backspace");
-const buttonClear = document.querySelector("#clear");
-const buttonSign = document.querySelector("#sign");
+const buttonEqual = document.getElementById("Enter");
+const buttonBackspace = document.getElementById("Backspace");
+const buttonClear = document.getElementById("Delete");
+const buttonSign = document.getElementById("Alt");
+const buttons = document.querySelectorAll("button");
 
 let input = "0";
 let previousInput = "0";
@@ -18,14 +20,15 @@ function divide(a,b){return a/b;}
 
 function operate(operator,a,b){
     switch (operator){
-        case "add":
+        case "+":
             return add(a,b);
-        case "substract":
+        case "-":
             return substract(a,b);
-        case "multiply":
+        case "*":
             return multiply(a,b);
-        case "divide":
-            return divide(a,b);
+        case "/":
+            if (b == "0") return "Don't /0!"
+            else return divide(a,b);
     }
 }
 
@@ -48,37 +51,47 @@ function updateDisplay(number){
     if (nDisplay.length == 0) nDisplay = "0";
     else if (nDisplay.length > 16) nDisplay = Number(nDisplay).toPrecision(11);
     display.textContent = nDisplay;
-    console.log(number);
-    console.log(nDisplay);
+}
+
+function prepareOperator(newOperator){
+    //This means this is the first operation, we wait until next input. operator is logged until next operation or equal.
+    if (operator == ""){
+        operator = newOperator;
+        previousInput = input;
+    } //We are chaining operations, so we display the previous calculation
+    else {
+        input = operate(operator,previousInput,input);
+        operator = newOperator;
+        previousInput = input;
+    }
+    updateDisplay(input);
+    readyNewInput = true;
 }
 
 buttonDigits.forEach((buttonDigit) => {
     buttonDigit.addEventListener("click", () =>{
         addDigits(buttonDigit.id);
+
+    });
+});
+
+buttons.forEach((button) => {
+    button.addEventListener("transitionend", () =>{
+        button.classList.remove("active");
     });
 });
 
 buttonOperations.forEach((buttonOperation) => {
     buttonOperation.addEventListener("click", () =>{
-        //This means this is the first operation, we wait until next input. operator is logged until next operation or equal.
-        if (operator == ""){
-            operator = buttonOperation.id;
+        prepareOperator(buttonOperation.id);
             previousInput = input;
-        } //We are chaining operations, so we display the previous calculation
-        else {
-            input = operate(operator,previousInput,input);
-            operator = buttonOperation.id;
-            previousInput = input;
-        }
-        updateDisplay(input);
-        readyNewInput = true;
     });
 });
 buttonEqual.addEventListener("click", () =>{
     //We were waiting for another number. Keep displaying same input as before and erase last operator
     if (readyNewInput) operator = "";
     //We introduced a new number and had an operation on queue
-    else {
+    else if (operator != ""){
         input = operate(operator,previousInput,input);
         operator = "";
         updateDisplay(input);
@@ -110,4 +123,12 @@ buttonSign.addEventListener("click", () =>{
     else if(input.charAt(0) == "-")input = input.slice(1);
     else input = "-" + input;
     updateDisplay(input);
+});
+
+body.addEventListener("keydown", (e) =>{
+    let buttonPress = document.getElementById(e.key);
+    if (buttonPress){
+        buttonPress.click();
+        buttonPress.classList.add("active")
+    }
 });
