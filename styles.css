@@ -137,7 +137,7 @@ button:active, button.active {
 @media only screen and (orientation: landscape) {
     .panelDiv {
         width: 85vh;
-        height: 85vh;
+        height: 75vh;
     }
     .displayDiv{
         width: 64vh;
